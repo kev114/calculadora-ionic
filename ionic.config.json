@@ -1,0 +1,7 @@
+{
+  "name": "miCalculadora",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
