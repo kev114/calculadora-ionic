@@ -22,12 +22,12 @@
         <div class="resultado-principal">{{ resultado }}</div>
       </div>
 
-      <div class="contenedor-historial">
-        <div v-for="(h, i) in historial" :key="i" class="item-historial">
-          {{ h }}
-        </div>
-        <div v-if="historial.length === 0" class="vacio">Listo para calcular</div>
-      </div>
+     <div class="contenedor-historial">
+        <div v-for="(h, i) in historial" :key="'hist-' + i" class="item-historial">
+       {{ h }}
+       </div>
+       <div v-if="historial.length === 0" class="vacio">Listo para calcular</div>
+     </div>
 
       <ion-grid class="ion-no-padding">
         <ion-row>
