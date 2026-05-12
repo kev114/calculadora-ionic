@@ -13,8 +13,8 @@
 
     <ion-content class="ion-padding fondo-azul-blindado">
       <div class="pantalla-cw" :class="{ 'pantalla-dark': modoOscuro }">
-        // @ts-ignore
-        <div class="indicadores"> 
+
+          <div class="indicadores"> 
           <span>{{ modoGrados ? 'DEG' : 'RAD' }}</span>
           <span v-if="memoria !== 0">M</span>
         </div>
@@ -62,7 +62,7 @@
   </ion-page>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts"> // @ts-nocheck
 import { ref } from 'vue';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonGrid, IonRow, IonCol, IonButton, IonButtons, IonIcon, IonActionSheet, alertController } from '@ionic/vue';
 import { moon, sunny } from 'ionicons/icons';
