@@ -13,7 +13,8 @@
 
     <ion-content class="ion-padding fondo-azul-blindado">
       <div class="pantalla-cw" :class="{ 'pantalla-dark': modoOscuro }">
-        <div class="indicadores">
+        // @ts-ignore
+        <div class="indicadores"> 
           <span>{{ modoGrados ? 'DEG' : 'RAD' }}</span>
           <span v-if="memoria !== 0">M</span>
         </div>
