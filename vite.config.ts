@@ -1,12 +1,20 @@
-import legacy from '@vitejs/plugin-legacy'
-import vue from '@vitejs/plugin-vue'
-import path from 'path'
 import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue' // o el framework que uses
+// import legacy from '@vitejs/plugin-legacy' <--- SI TIENES ESTO, COMENTALO
 
 export default defineConfig({
-  plugins: [vue(), legacy()],
-  build: { target: 'esnext' }, // <--- Esto es lo único que arregla el error rojo
-  resolve: {
-    alias: { '@': path.resolve(__dirname, './src') },
+  plugins: [
+    vue(),
+    // legacy(...) <--- SI TIENES ESTO, COMENTALO TAMBIÉN
+  ],
+  build: {
+    // Esto le dice a esbuild que está bien usar BigInt
+    target: 'es2020' 
+  },
+  optimizeDeps: {
+    esbuildOptions: {
+      // Esto asegura que durante el desarrollo también se soporte
+      target: 'es2020'
+    }
   }
 })
