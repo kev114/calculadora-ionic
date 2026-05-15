@@ -45,21 +45,30 @@ const botones = [
   ['4', '5', '6', '-'],
   ['1', '2', '3', '+'],
   ['0', '.', ')', '='], // Agregamos el paréntesis de cierre para que no de error
-  ['DEG', 'RAD', 'sqrt', 'sqrt'] // Agregamos los botones de modo
+  ['DEG', 'RAD', 'DEL', 'sqrt'] // Agregamos los botones de modo
 ];
 
 const presionar = (boton: string) => {
   if (boton === 'C') {
     resultado.value = '0';
     buffer.value = '';
-  } else if (boton === 'DEG' || boton === 'RAD') {
+  } 
+  // Lógica para borrar un solo carácter
+  else if (boton === 'DEL') {
+    if (resultado.value.length <= 1 || resultado.value === 'Error') {
+      resultado.value = '0';
+    } else {
+      resultado.value = resultado.value.slice(0, -1);
+    }
+  } 
+  else if (boton === 'DEG' || boton === 'RAD') {
     modo.value = boton;
-  } else if (boton === '=') {
+  } 
+  else if (boton === '=') {
     try {
       buffer.value = resultado.value + ' =';
       let expresion = resultado.value.replace(/X/g, '*');
 
-      // Si es DEG, convertimos el valor dentro de los paréntesis a radianes
       if (modo.value === 'DEG') {
         expresion = expresion.replace(/sin\(([^)]+)\)/g, 'Math.sin(($1) * Math.PI / 180)');
         expresion = expresion.replace(/cos\(([^)]+)\)/g, 'Math.cos(($1) * Math.PI / 180)');
@@ -74,16 +83,18 @@ const presionar = (boton: string) => {
     } catch {
       resultado.value = 'Error';
     }
-  } else if (['sin', 'cos', 'sqrt'].includes(boton)) {
+  } 
+  else if (['sin', 'cos', 'sqrt'].includes(boton)) {
     if (resultado.value === '0') resultado.value = boton + '(';
     else resultado.value += boton + '(';
-  } else {
+  } 
+  else {
     if (resultado.value === '0' && boton !== '.') resultado.value = boton;
     else resultado.value += boton;
   }
 };
 
-const esOperador = (b: string) => ['/', 'X', '-', '+', '=', 'sin', 'cos', 'sqrt', 'C'].includes(b);
+const esOperador = (b: string) => ['/', 'X', '-', '+', '=', 'sin', 'cos', 'sqrt', 'C', 'DEL'].includes(b);
 </script>
 
 <style scoped>
