@@ -19,6 +19,7 @@
               expand="block" 
               :color="esOperador(boton) ? 'warning' : 'medium'" 
               @click="presionar(boton)"
+              translate="no"
             >
               {{ boton }}
             </ion-button>
